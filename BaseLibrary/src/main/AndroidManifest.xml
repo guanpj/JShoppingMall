@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.me.guanpj.mall.library" />
+    package="com.me.guanpj.mall.library" >
+
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+</manifest>
