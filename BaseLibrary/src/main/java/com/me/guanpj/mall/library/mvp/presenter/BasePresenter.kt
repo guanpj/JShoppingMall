@@ -1,13 +1,12 @@
-package com.me.guanpj.mall.mvp.presenter
+package com.me.guanpj.mall.library.mvp.presenter
 
 import android.content.Context
-import com.me.guanpj.mall.core.MyApplication.Companion.context
 import com.me.guanpj.mall.library.util.NetWorkUtils
-import com.me.guanpj.mall.mvp.BaseView
+import com.me.guanpj.mall.library.mvp.IBaseView
 import com.trello.rxlifecycle.LifecycleProvider
 import javax.inject.Inject
 
-open class BasePresenter<V : BaseView> {
+open class BasePresenter<V : IBaseView> {
 
     lateinit var mView: V
 
@@ -18,7 +17,7 @@ open class BasePresenter<V : BaseView> {
     lateinit var mContext: Context
 
     fun checkNetWork():Boolean{
-        if(NetWorkUtils.isNetWorkAvailable(context)){
+        if(NetWorkUtils.isNetWorkAvailable(mContext)){
             return true
         }
         mView.onError("网络不可用")

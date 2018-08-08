@@ -1,12 +1,12 @@
 package com.me.guanpj.mall.library.rx
 
-import com.me.guanpj.mall.library.mvp.view.BaseView
+import com.me.guanpj.mall.library.mvp.IBaseView
 import rx.Subscriber
 
 /*
     Rx订阅者默认实现
  */
-open class BaseSubscriber<T>(val baseView: BaseView) : Subscriber<T>() {
+open class BaseSubscriber<T>(val baseView: IBaseView) : Subscriber<T>() {
 
     override fun onCompleted() {
         baseView.hideLoading()

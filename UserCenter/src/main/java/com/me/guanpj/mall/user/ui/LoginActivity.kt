@@ -1,14 +1,17 @@
 package com.me.guanpj.mall.user.ui
 
-import android.app.Activity
 import android.os.Bundle
-import android.widget.TextView
+import com.kotlin.user.data.protocol.UserInfo
+import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
+import org.jetbrains.anko.toast
 
-class LoginActivity : Activity() {
+class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginContract.View {
+    override fun onLoginResult(result: UserInfo) {
+        toast(result.toString())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val textview: TextView = TextView(this)
-        textview.setText("ldjflds")
-        setContentView(textview)
+        mPresenter.login("111", "222", "ddd")
     }
 }

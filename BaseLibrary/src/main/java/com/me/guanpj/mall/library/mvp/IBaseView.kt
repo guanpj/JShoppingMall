@@ -1,6 +1,6 @@
-package com.me.guanpj.mall.mvp
+package com.me.guanpj.mall.library.mvp
 
-interface BaseView {
+interface IBaseView {
     fun showLoading()
     fun hideLoading()
     fun onError(text: String)

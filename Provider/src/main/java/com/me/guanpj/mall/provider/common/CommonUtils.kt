@@ -7,7 +7,7 @@ import com.me.guanpj.mall.library.util.AppPrefsUtils
   顶级函数，判断是否登录
  */
 fun isLogined():Boolean{
-    return AppPrefsUtils.getString(BaseConstant.KEY_SP_TOKEN).isNotEmpty()
+    return AppPrefsUtils.instant.getString(BaseConstant.KEY_SP_TOKEN).isNotEmpty()
 }
 
 /*

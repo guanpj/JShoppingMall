@@ -1,17 +1,24 @@
 package com.me.guanpj.mall.library.util
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import com.kotlin.base.common.BaseConstant
-import com.me.guanpj.mall.library.core.MyApplication
 
 /*
   SP工具类
  */
-object AppPrefsUtils {
-    private var sp: SharedPreferences = MyApplication.context.getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
+class AppPrefsUtils(private val application: Application) {
+    private var sp: SharedPreferences = application.getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
     private var ed: Editor
+
+    companion object {
+        lateinit var instant: AppPrefsUtils
+        fun init(application: Application) {
+            instant = AppPrefsUtils(application)
+        }
+    }
 
     init {
         ed = sp.edit()

@@ -1,13 +1,13 @@
-package com.me.guanpj.mall.mvp.view.fragment
+package com.me.guanpj.mall.library.mvp.view.fragment
 
 import android.content.Context
 import com.me.guanpj.mall.library.widget.ProgressLoading
-import com.me.guanpj.mall.mvp.BaseView
-import com.me.guanpj.mall.mvp.presenter.BasePresenter
+import com.me.guanpj.mall.library.mvp.IBaseView
+import com.me.guanpj.mall.library.mvp.presenter.BasePresenter
 import dagger.android.support.AndroidSupportInjection
 import org.jetbrains.anko.support.v4.toast
 
-abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), BaseView {
+abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), IBaseView {
 
     lateinit var mPresenter: P
 

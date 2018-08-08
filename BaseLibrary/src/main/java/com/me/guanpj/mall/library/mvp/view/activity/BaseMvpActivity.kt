@@ -1,10 +1,10 @@
-package com.me.guanpj.mall.mvp.view.activity
+package com.me.guanpj.mall.library.mvp.view.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.me.guanpj.mall.library.widget.ProgressLoading
-import com.me.guanpj.mall.mvp.BaseView
-import com.me.guanpj.mall.mvp.presenter.BasePresenter
+import com.me.guanpj.mall.library.mvp.IBaseView
+import com.me.guanpj.mall.library.mvp.presenter.BasePresenter
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -12,14 +12,14 @@ import dagger.android.support.HasSupportFragmentInjector
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView, HasSupportFragmentInjector{
+abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), IBaseView, HasSupportFragmentInjector {
 
     lateinit var mPresenter: P
 
     @Inject
     lateinit var mFragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
-    private lateinit var mLoadingDialog:ProgressLoading
+    private lateinit var mLoadingDialog: ProgressLoading
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -36,5 +36,5 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), BaseView,
 
     override fun hideLoading() = mLoadingDialog.hideLoading()
 
-    override fun onError(text:String)= toast(text)
+    override fun onError(text: String) = toast(text)
 }

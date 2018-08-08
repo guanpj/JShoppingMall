@@ -1,4 +1,4 @@
-package com.me.guanpj.mall.mvp.view.fragment
+package com.me.guanpj.mall.library.mvp.view.fragment
 
 import com.trello.rxlifecycle.components.support.RxFragment
 
