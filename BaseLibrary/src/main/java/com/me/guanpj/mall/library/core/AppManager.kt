@@ -9,7 +9,7 @@ class AppManager private constructor() {
     private val activityStack: Stack<Activity> = Stack()
 
     companion object {
-        val instant: AppManager by lazy { AppManager() }
+        val instance: AppManager by lazy { AppManager() }
     }
 
     fun addActivity(activity: Activity) {

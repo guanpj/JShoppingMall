@@ -1,8 +1,8 @@
 package com.me.guanpj.mall.di.module
 
 import com.me.guanpj.mall.di.component.BaseActivityComponent
-import com.me.guanpj.mall.user.di.module.LoginActivityModule
-import com.me.guanpj.mall.user.ui.LoginActivity
+import com.me.guanpj.mall.user.module.login.LoginActivity
+import com.me.guanpj.mall.user.module.login.LoginActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

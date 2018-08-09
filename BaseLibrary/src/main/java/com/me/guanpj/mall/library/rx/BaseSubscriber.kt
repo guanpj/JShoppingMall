@@ -4,7 +4,7 @@ import com.me.guanpj.mall.library.mvp.IBaseView
 import rx.Subscriber
 
 /*
-    Rx订阅者默认实现
+  Rx订阅者默认实现
  */
 open class BaseSubscriber<T>(val baseView: IBaseView) : Subscriber<T>() {
 

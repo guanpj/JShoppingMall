@@ -7,11 +7,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-/*kapt {
+kapt {
     arguments {
         arg("moduleName", project.getName())
     }
-}*/
+}
 
 android {
     compileSdkVersion compile_sdk_version
@@ -59,7 +59,7 @@ dependencies {
     //Dagger2
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     //ARouter
-    //kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 

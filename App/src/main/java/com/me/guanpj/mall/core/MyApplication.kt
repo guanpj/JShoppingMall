@@ -5,7 +5,6 @@ import android.app.Application
 import android.content.Context
 import android.support.v4.app.Fragment
 import com.me.guanpj.mall.di.component.AppComponent
-import com.me.guanpj.mall.di.module.AppModule
 import com.me.guanpj.mall.library.core.AppStatusTracker
 import com.me.guanpj.mall.library.di.delegate.DaggerDelegate
 import com.me.guanpj.mall.library.util.AppPrefsUtils
@@ -27,11 +26,11 @@ open class MyApplication : Application(), HasActivityInjector, HasSupportFragmen
 
     override fun onCreate() {
         super.onCreate()
-        AppStatusTracker.init(this)
         AppPrefsUtils.init(this)
+        AppStatusTracker.init(this)
         mDaggerDalegate = DaggerDelegate(this)
 
-        //mAppComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        mAppComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
         mAppComponent.inject(this)
 
         context = this

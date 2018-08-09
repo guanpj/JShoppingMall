@@ -14,9 +14,9 @@ class ProgressLoading private constructor(context: Context, theme: Int) : Dialog
         private lateinit var mDialog: ProgressLoading
         private var animDrawable: AnimationDrawable? = null
 
-        fun create(context: Context): ProgressLoading {
+        fun create(context: Context?): ProgressLoading {
             //样式引入
-            mDialog = ProgressLoading(context, R.style.LightProgressDialog)
+            mDialog = ProgressLoading(context!!, R.style.LightProgressDialog)
             //设置布局
             mDialog.setContentView(R.layout.progress_dialog)
             mDialog.setCancelable(true)
