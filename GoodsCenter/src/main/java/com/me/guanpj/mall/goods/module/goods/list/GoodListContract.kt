@@ -1,4 +1,4 @@
-package com.me.guanpj.mall.goods.module.goods
+package com.me.guanpj.mall.goods.module.goods.list
 
 import com.me.guanpj.mall.goods.data.Goods
 import com.me.guanpj.mall.library.mvp.IBasePresenter

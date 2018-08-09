@@ -9,7 +9,5 @@ import dagger.android.AndroidInjector
 interface BaseActivityComponent {
 
     @Subcomponent.Builder
-    abstract class BaseBuilder : AndroidInjector.Builder<BaseMvpActivity<*>>() {
-
-    }
+    abstract class BaseBuilder : AndroidInjector.Builder<BaseMvpActivity<*>>()
 }

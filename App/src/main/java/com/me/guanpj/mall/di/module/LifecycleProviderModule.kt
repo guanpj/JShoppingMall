@@ -1,4 +1,4 @@
-package com.me.guanpj.mall.library.di.module
+package com.me.guanpj.mall.di.module
 
 import com.trello.rxlifecycle.LifecycleProvider
 import dagger.Module

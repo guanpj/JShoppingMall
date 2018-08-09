@@ -1,4 +1,4 @@
-package com.me.guanpj.mall.goods.module.goods
+package com.me.guanpj.mall.goods.module.goods.list
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
@@ -9,6 +9,7 @@ import com.me.guanpj.mall.goods.R
 import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.data.Goods
 import com.me.guanpj.mall.goods.module.adapter.GoodsAdapter
+import com.me.guanpj.mall.goods.module.goods.detail.GoodsDetailActivity
 import com.me.guanpj.mall.library.ext.startLoading
 import com.me.guanpj.mall.library.mvp.adapter.BaseRecyclerViewAdapter
 import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity

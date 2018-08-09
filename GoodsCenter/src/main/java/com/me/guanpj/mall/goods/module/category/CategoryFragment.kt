@@ -12,7 +12,7 @@ import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.data.Category
 import com.me.guanpj.mall.goods.module.adapter.SecondCategoryAdapter
 import com.me.guanpj.mall.goods.module.adapter.TopCategoryAdapter
-import com.me.guanpj.mall.goods.module.goods.GoodsListActivity
+import com.me.guanpj.mall.goods.module.goods.list.GoodsListActivity
 import com.me.guanpj.mall.library.ext.setVisible
 import com.me.guanpj.mall.library.ext.startLoading
 import com.me.guanpj.mall.library.mvp.adapter.BaseRecyclerViewAdapter

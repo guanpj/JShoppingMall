@@ -6,7 +6,7 @@ import android.view.View
 import com.me.guanpj.mall.goods.R
 import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.module.adapter.SearchHistoryAdapter
-import com.me.guanpj.mall.goods.module.goods.GoodsListActivity
+import com.me.guanpj.mall.goods.module.goods.list.GoodsListActivity
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.ext.setVisible
 import com.me.guanpj.mall.library.mvp.adapter.BaseRecyclerViewAdapter

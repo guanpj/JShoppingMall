@@ -34,9 +34,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':Provider')
-    implementation project(path: ':GoodsCenter')
-    implementation project(path: ':MessageCenter')
-    implementation project(path: ':OrderCenter')
+    implementation project(':GoodsCenter')
+    implementation project(':MessageCenter')
+    implementation project(':OrderCenter')
     if (!isDebugMode.toBoolean()) {
         implementation project(':UserCenter')
     }

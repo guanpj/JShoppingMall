@@ -10,12 +10,14 @@ class DaggerDelegate(val mApplication: Application) {
     @Inject
     lateinit var mActivityLifecycleCallbacks: DaggerActivityLifecycleCallbacks
 
-    lateinit var mComponent: DaggerComponent
+    var mComponent: DaggerComponent
 
     init {
         mComponent = DaggerDaggerComponent.builder()
                 .daggerModule(DaggerModule(mApplication))
                 .build()
         mComponent.inject(this)
+        //注册 ActivityLifecycleCallbacks 来进行 Activity/Fragment 的依赖注入
+        mApplication.registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
     }
 }

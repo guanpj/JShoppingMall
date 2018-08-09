@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.support.v4.app.Fragment
 import com.me.guanpj.mall.di.component.AppComponent
+import com.me.guanpj.mall.di.module.AppModule
 import com.me.guanpj.mall.library.core.AppStatusTracker
 import com.me.guanpj.mall.library.di.delegate.DaggerDelegate
 import com.me.guanpj.mall.library.util.AppPrefsUtils

@@ -16,7 +16,6 @@ import com.me.guanpj.mall.goods.event.AddCartEvent
 import com.me.guanpj.mall.goods.event.GoodsDetailImageEvent
 import com.me.guanpj.mall.goods.event.SkuChangedEvent
 import com.me.guanpj.mall.goods.event.UpdateCartSizeEvent
-import com.me.guanpj.mall.goods.module.goods.GoodsDetailActivity
 import com.me.guanpj.mall.goods.widget.GoodsSkuPopView
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseActivity
