@@ -7,7 +7,7 @@ android {
     buildToolsVersion build_tools_version
 
     defaultConfig {
-        applicationId "com.me.guanpj.jshoppingmall"
+        applicationId "com.me.guanpj.mall"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
         versionCode 1

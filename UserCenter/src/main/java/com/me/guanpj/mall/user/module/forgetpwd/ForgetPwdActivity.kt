@@ -20,6 +20,7 @@ class ForgetPwdActivity : BaseMvpActivity<ForgetPwdPresenter>(), ForgetPwdContra
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_forget_pwd)
 
         initView()

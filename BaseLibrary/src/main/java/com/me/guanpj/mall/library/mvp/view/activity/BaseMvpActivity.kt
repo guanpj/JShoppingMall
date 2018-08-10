@@ -28,7 +28,7 @@ abstract class BaseMvpActivity<P : BasePresenter<*>> : BaseActivity(), IBaseView
         initActivityInjection()
         performInject()
 
-        mPresenter.proxyView = this
+        //mPresenter.proxyView = this
 
         mLoadingDialog = ProgressLoading.create(this)
         ARouter.getInstance().inject(this)

@@ -18,6 +18,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterContract.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_register)
 
         initView()

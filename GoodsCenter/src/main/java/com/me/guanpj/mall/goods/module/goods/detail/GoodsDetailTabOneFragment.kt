@@ -42,6 +42,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        mPresenter.onAttach(this)
         return inflater?.inflate(R.layout.fragment_goods_detail_tab_one, container, false)
     }
 

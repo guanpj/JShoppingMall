@@ -32,6 +32,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginContract.View, Vie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_login)
 
         initView()

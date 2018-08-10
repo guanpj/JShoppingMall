@@ -11,7 +11,7 @@ import javax.inject.Inject
 /*
   订单详情页Presenter
  */
-class OrderDetailPresenter @Inject constructor() : BasePresenter<OrderConfirmContract.View>(), OrderConfirmContract.Presenter {
+class OrderDetailPresenter @Inject constructor() : BasePresenter<OrderDetailContract.View>(), OrderDetailContract.Presenter {
 
     @Inject
     lateinit var orderService: OrderService

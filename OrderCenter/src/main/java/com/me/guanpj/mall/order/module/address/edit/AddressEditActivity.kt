@@ -20,6 +20,7 @@ class AddressEditActivity : BaseMvpActivity<AddressEditPresenter>(), AddressEdit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_edit_address)
 
         initView()

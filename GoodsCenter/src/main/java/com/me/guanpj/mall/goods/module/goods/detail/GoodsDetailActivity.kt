@@ -85,7 +85,6 @@ class GoodsDetailActivity : BaseActivity() {
         mCartBdage.setGravityOffset(22f, -2f, true)
         mCartBdage.setBadgeTextSize(6f, true)
         mCartBdage.bindTarget(mEnterCartTv).badgeNumber = AppPrefsUtils.instant.getInt(GoodsConstant.SP_CART_SIZE)
-
     }
 
     /*

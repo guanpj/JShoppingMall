@@ -1,2 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.me.guanpj.mall.goods" />
+    package="com.me.guanpj.mall.goods">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <activity android:name=".module.goods.list.GoodsListActivity" />
+        <activity android:name=".module.goods.search.SearchGoodsActivity" />
+        <activity
+            android:name=".module.goods.detail.GoodsDetailActivity"
+            android:theme="@style/AppTheme.Black" />
+        <activity android:name=".module.cart.CartActivity" />
+    </application>
+
+</manifest>

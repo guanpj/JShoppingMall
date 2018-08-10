@@ -40,6 +40,7 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoCon
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_user_info)
 
         initView()

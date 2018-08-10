@@ -23,6 +23,7 @@ class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetail
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_order_detail)
 
         initView()

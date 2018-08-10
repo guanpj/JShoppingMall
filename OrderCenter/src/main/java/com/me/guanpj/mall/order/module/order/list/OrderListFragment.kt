@@ -34,6 +34,7 @@ class OrderListFragment : BaseMvpFragment<OrderListPresenter>(), OrderListContra
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+        mPresenter.onAttach(this)
         return inflater.inflate(R.layout.fragment_order, container, false)
     }
 

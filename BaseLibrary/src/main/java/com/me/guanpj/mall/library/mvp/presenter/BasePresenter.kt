@@ -9,6 +9,7 @@ import java.lang.ref.WeakReference
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
+import java.lang.reflect.Proxy
 import javax.inject.Inject
 
 open class BasePresenter<V : IBaseView> : IBasePresenter<V> {
@@ -25,14 +26,13 @@ open class BasePresenter<V : IBaseView> : IBasePresenter<V> {
     lateinit var mContext: Context
 
     override fun onAttach(view: V) {
-        this.proxyView = view
-        /*this.weakView = WeakReference(view)
-        this.getView() = Proxy.newProxyInstance(view.javaClass.classLoader,
+        this.weakView = WeakReference(view)
+        /*this.proxyView = Proxy.newProxyInstance(view.javaClass.classLoader,
                 view.javaClass.interfaces, MyInvocationHandler(this.weakView!!.get())) as V*/
     }
 
     fun getView(): V {
-        return proxyView!!
+        return this.weakView!!.get()!!
     }
 
     override fun onDetach() {
@@ -46,7 +46,7 @@ open class BasePresenter<V : IBaseView> : IBasePresenter<V> {
         if (NetWorkUtils.isNetWorkAvailable(mContext)) {
             return true
         }
-        getView()?.onError("网络不可用")
+        getView().onError("网络不可用")
         return false
     }
 

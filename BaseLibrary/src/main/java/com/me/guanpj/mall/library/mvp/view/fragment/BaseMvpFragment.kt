@@ -28,7 +28,7 @@ abstract class BaseMvpFragment<P : BasePresenter<*>> : BaseFragment(), IBaseView
         initActivityInjection()
         performInject()
 
-        mPresenter.onAttach(this)
+        //mPresenter.onAttach(this)
 
         mLoadingDialog = ProgressLoading.create(context)
         return super.onCreateView(inflater, container, savedInstanceState)

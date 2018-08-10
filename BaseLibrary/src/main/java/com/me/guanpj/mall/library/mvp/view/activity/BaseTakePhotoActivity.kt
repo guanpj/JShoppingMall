@@ -47,7 +47,7 @@ abstract class BaseTakePhotoActivity<P : BasePresenter<*>> : BaseActivity(), IBa
         initActivityInjection()
         performInject()
 
-        mPresenter.onAttach(this)
+        //mPresenter.onAttach(this)
 
         mTakePhoto = TakePhotoImpl(this, this)
         mTakePhoto.onCreate(savedInstanceState)

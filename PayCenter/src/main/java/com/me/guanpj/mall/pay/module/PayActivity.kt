@@ -32,10 +32,9 @@ class PayActivity : BaseMvpActivity<PayPresenter>(), PayContract.View, View.OnCl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_cash_register)
-
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX)
-
         ARouter.getInstance().inject(this)
 
         initView()

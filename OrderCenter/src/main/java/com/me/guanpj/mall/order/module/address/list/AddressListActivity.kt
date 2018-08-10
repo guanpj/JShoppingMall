@@ -31,6 +31,7 @@ class AddressListActivity : BaseMvpActivity<AddressListPresenter>(), AddressList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mPresenter.onAttach(this)
         setContentView(R.layout.activity_address)
 
         initView()
