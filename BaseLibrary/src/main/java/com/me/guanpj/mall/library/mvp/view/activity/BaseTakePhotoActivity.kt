@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.support.v4.app.Fragment
 import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
@@ -13,14 +12,15 @@ import com.jph.takephoto.app.TakePhoto
 import com.jph.takephoto.app.TakePhotoImpl
 import com.jph.takephoto.compress.CompressConfig
 import com.jph.takephoto.model.TResult
+import com.me.guanpj.mall.library.core.BaseApplication
+import com.me.guanpj.mall.library.di.component.ActivityComponent
+import com.me.guanpj.mall.library.di.component.DaggerActivityComponent
+import com.me.guanpj.mall.library.di.module.ActivityModule
+import com.me.guanpj.mall.library.di.module.LifecycleProviderModule
 import com.me.guanpj.mall.library.mvp.IBaseView
 import com.me.guanpj.mall.library.mvp.presenter.BasePresenter
 import com.me.guanpj.mall.library.util.DateUtils
 import com.me.guanpj.mall.library.widget.ProgressLoading
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
 import org.jetbrains.anko.toast
 import java.io.File
 import javax.inject.Inject
@@ -28,23 +28,26 @@ import javax.inject.Inject
 /*
   存在选择图片的Activity基础封装
  */
-abstract open class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity(), IBaseView, HasSupportFragmentInjector, TakePhoto.TakeResultListener {
+abstract class BaseTakePhotoActivity<P : BasePresenter<*>> : BaseActivity(), IBaseView, TakePhoto.TakeResultListener {
+
+    @Inject
+    lateinit var mPresenter: P
+
+    lateinit var mActivityComponent: ActivityComponent
 
     private lateinit var mTakePhoto: TakePhoto
 
     private lateinit var mTempFile: File
 
-    @Inject
-    lateinit var mPresenter: T
-
-    @Inject
-    lateinit var mFragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
     private lateinit var mLoadingDialog: ProgressLoading
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+
+        initActivityInjection()
+        performInject()
+
+        mPresenter.onAttach(this)
 
         mTakePhoto = TakePhotoImpl(this, this)
         mTakePhoto.onCreate(savedInstanceState)
@@ -53,9 +56,14 @@ abstract open class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity()
         ARouter.getInstance().inject(this)
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return mFragmentDispatchingAndroidInjector
+    fun initActivityInjection() {
+        mActivityComponent = DaggerActivityComponent.builder().appComponent(BaseApplication.appComponent)
+                .activityModule(ActivityModule(this))
+                .lifecycleProviderModule(LifecycleProviderModule(this))
+                .build()
     }
+
+    abstract fun performInject()
 
     override fun showLoading() = mLoadingDialog.showLoading()
 
@@ -68,7 +76,7 @@ abstract open class BaseTakePhotoActivity<T : BasePresenter<*>> : BaseActivity()
      */
     protected fun showAlertView() {
         AlertView("选择图片", "", "取消", null, arrayOf("拍照", "相册"), this,
-                AlertView.Style.ActionSheet, OnItemClickListener { o, position ->
+                AlertView.Style.ActionSheet, OnItemClickListener { _, position ->
             mTakePhoto.onEnableCompress(CompressConfig.ofDefaultConfig(), false)
             when (position) {
                 0 -> {

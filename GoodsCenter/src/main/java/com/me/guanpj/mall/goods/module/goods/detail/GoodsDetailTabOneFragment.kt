@@ -9,9 +9,11 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
+import com.kotlin.goods.injection.component.DaggerGoodsFragmentComponent
 import com.me.guanpj.mall.goods.R
 import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.data.Goods
+import com.me.guanpj.mall.goods.di.module.GoodsModule
 import com.me.guanpj.mall.goods.event.AddCartEvent
 import com.me.guanpj.mall.goods.event.GoodsDetailImageEvent
 import com.me.guanpj.mall.goods.event.SkuChangedEvent
@@ -50,6 +52,11 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         initSkuPop()
         loadData()
         initObserve()
+    }
+
+    override fun performInject() {
+        DaggerGoodsFragmentComponent.builder().fragmentComponent(mFragmentComponent)
+                .goodsModule(GoodsModule()).build().inject(this)
     }
 
     /*

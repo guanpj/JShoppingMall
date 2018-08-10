@@ -5,9 +5,11 @@ import android.support.v7.widget.GridLayoutManager
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout
 import com.kennyc.view.MultiStateView
+import com.kotlin.goods.injection.component.DaggerGoodsActivityComponent
 import com.me.guanpj.mall.goods.R
 import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.data.Goods
+import com.me.guanpj.mall.goods.di.module.GoodsModule
 import com.me.guanpj.mall.goods.module.adapter.GoodsAdapter
 import com.me.guanpj.mall.goods.module.goods.detail.GoodsDetailActivity
 import com.me.guanpj.mall.library.ext.startLoading
@@ -32,6 +34,11 @@ class GoodsListActivity : BaseMvpActivity<GoodsListPresenter>(), GoodListContrac
         initView()
         initRefreshLayout()
         loadData()
+    }
+
+    override fun performInject() {
+        DaggerGoodsActivityComponent.builder().activityComponent(mActivityComponent)
+                .goodsModule(GoodsModule()).build().inject(this)
     }
 
     /*

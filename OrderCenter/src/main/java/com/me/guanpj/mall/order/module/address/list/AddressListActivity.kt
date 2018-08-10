@@ -12,7 +12,9 @@ import com.me.guanpj.mall.library.mvp.adapter.BaseRecyclerViewAdapter
 import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
 import com.me.guanpj.mall.order.R
 import com.me.guanpj.mall.order.core.OrderConstant
-import com.me.guanpj.mall.order.data.ShipAddress
+import com.me.guanpj.mall.order.data.Address
+import com.me.guanpj.mall.order.di.component.DaggerAddressComponent
+import com.me.guanpj.mall.order.di.module.AddressModule
 import com.me.guanpj.mall.order.event.SelectAddressEvent
 import com.me.guanpj.mall.order.module.adapter.ShipAddressAdapter
 import com.me.guanpj.mall.order.module.address.edit.AddressEditActivity
@@ -34,6 +36,11 @@ class AddressListActivity : BaseMvpActivity<AddressListPresenter>(), AddressList
         initView()
     }
 
+    override fun performInject() {
+        DaggerAddressComponent.builder().activityComponent(mActivityComponent)
+                .addressModule(AddressModule()).build().inject(this)
+    }
+
     override fun onStart() {
         super.onStart()
         loadData()
@@ -49,15 +56,15 @@ class AddressListActivity : BaseMvpActivity<AddressListPresenter>(), AddressList
 
         //设置操作事件
         mAdapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
-            override fun onSetDefault(address: ShipAddress) {
+            override fun onSetDefault(address: Address) {
                 mPresenter.setDefaultShipAddress(address)
             }
 
-            override fun onEdit(address: ShipAddress) {
+            override fun onEdit(address: Address) {
                 startActivity<AddressEditActivity>(OrderConstant.KEY_SHIP_ADDRESS to address)
             }
 
-            override fun onDelete(address: ShipAddress) {
+            override fun onDelete(address: Address) {
                 AlertView("删除", "确定删除该地址？", "取消", null, arrayOf("确定"), this@AddressListActivity, AlertView.Style.Alert, OnItemClickListener { o, position ->
                     if (position == 0) {
                         mPresenter.deleteShipAddress(address.id)
@@ -67,8 +74,8 @@ class AddressListActivity : BaseMvpActivity<AddressListPresenter>(), AddressList
         }
 
         //单项点击事件
-        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<ShipAddress> {
-            override fun onItemClick(item: ShipAddress, position: Int) {
+        mAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Address> {
+            override fun onItemClick(item: Address, position: Int) {
                 Bus.send(SelectAddressEvent(item))
                 finish()
             }
@@ -91,7 +98,7 @@ class AddressListActivity : BaseMvpActivity<AddressListPresenter>(), AddressList
     /*
       获取收货人信息回调
      */
-    override fun onGetShipAddressResult(result: MutableList<ShipAddress>?) {
+    override fun onGetShipAddressResult(result: MutableList<Address>?) {
         if (result != null && result.size > 0) {
             mAdapter.setData(result)
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT

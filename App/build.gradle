@@ -35,7 +35,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':Provider')
     implementation project(':GoodsCenter')
-    implementation project(':MessageCenter')
+    api project(':MessageCenter')
     implementation project(':OrderCenter')
     if (!isDebugMode.toBoolean()) {
         implementation project(':UserCenter')

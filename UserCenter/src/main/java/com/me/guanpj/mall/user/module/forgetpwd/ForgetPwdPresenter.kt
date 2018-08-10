@@ -18,12 +18,12 @@ class ForgetPwdPresenter @Inject constructor() : BasePresenter<ForgetPwdContract
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+        getView().showLoading()
 
-        userService.forgetPwd(mobile, verifyCode).excute(object : BaseSubscriber<Boolean>(mView) {
+        userService.forgetPwd(mobile, verifyCode).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
                 if (t)
-                    mView.onForgetPwdResult("验证成功")
+                    getView().onForgetPwdResult("验证成功")
             }
         }, mLifecycleProvider)
 

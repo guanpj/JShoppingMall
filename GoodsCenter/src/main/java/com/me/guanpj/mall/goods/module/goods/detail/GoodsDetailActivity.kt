@@ -10,7 +10,7 @@ import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.event.AddCartEvent
 import com.me.guanpj.mall.goods.event.UpdateCartSizeEvent
 import com.me.guanpj.mall.goods.module.adapter.GoodsDetailVpAdapter
-import com.me.guanpj.mall.goods.module.cart.CartListActivity
+import com.me.guanpj.mall.goods.module.cart.CartActivity
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseActivity
 import com.me.guanpj.mall.library.util.AppPrefsUtils
@@ -50,7 +50,7 @@ class GoodsDetailActivity : BaseActivity() {
         }
 
         mEnterCartTv.onClick {
-            startActivity<CartListActivity>()
+            startActivity<CartActivity>()
         }
 
         mLeftIv.onClick {

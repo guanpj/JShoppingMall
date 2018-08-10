@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.me.guanpj.mall.R
-import com.me.guanpj.mall.core.MyApplication.Companion.context
 import com.me.guanpj.mall.library.mvp.adapter.BaseRecyclerViewAdapter
 import com.me.guanpj.mall.library.util.GlideUtils
 import kotlinx.android.synthetic.main.layout_home_discount_item.view.*
@@ -17,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_home_discount_item.view.*
  */
 class HomeDiscountAdapter(context: Context) : BaseRecyclerViewAdapter<String, HomeDiscountAdapter.ViewHolder>(context) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context)
+        val view = LayoutInflater.from(mContext)
                 .inflate(R.layout.layout_home_discount_item, parent, false)
 
         return ViewHolder(view)
@@ -27,7 +26,7 @@ class HomeDiscountAdapter(context: Context) : BaseRecyclerViewAdapter<String, Ho
         super.onBindViewHolder(holder, position)
 
         //加载图片
-        GlideUtils.loadUrlImage(context, dataList[position], holder.itemView.mGoodsIconIv)
+        GlideUtils.loadUrlImage(mContext!!, dataList[position], holder.itemView.mGoodsIconIv)
         //静态假数据
         holder.itemView.mDiscountAfterTv.text = "￥123.00"
         holder.itemView.mDiscountBeforeTv.text = "$1000.00"

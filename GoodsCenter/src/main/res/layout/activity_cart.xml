@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_cart"
-        class="com.me.guanpj.mall.goods.module.cart.CartListFragment"
+        class="com.me.guanpj.mall.goods.module.cart.CartFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

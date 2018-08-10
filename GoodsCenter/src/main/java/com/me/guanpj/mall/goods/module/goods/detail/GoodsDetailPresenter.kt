@@ -28,10 +28,10 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<GoodsDetailCont
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        goodsService.getGoodsDetail(goodsId).excute(object : BaseSubscriber<Goods>(mView) {
+        getView().showLoading()
+        goodsService.getGoodsDetail(goodsId).excute(object : BaseSubscriber<Goods>(getView()) {
             override fun onNext(t: Goods) {
-                mView.onGetGoodsDetailResult(t)
+                getView().onGetGoodsDetailResult(t)
             }
         }, mLifecycleProvider)
     }
@@ -44,12 +44,12 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<GoodsDetailCont
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+        getView().showLoading()
         cartService.addCart(goodsId, goodsDesc, goodsIcon, goodsPrice,
-                goodsCount, goodsSku).excute(object : BaseSubscriber<Int>(mView) {
+                goodsCount, goodsSku).excute(object : BaseSubscriber<Int>(getView()) {
             override fun onNext(t: Int) {
                 AppPrefsUtils.instant.putInt(GoodsConstant.SP_CART_SIZE, t)
-                mView.onAddCartResult(t)
+                getView().onAddCartResult(t)
             }
         }, mLifecycleProvider)
     }

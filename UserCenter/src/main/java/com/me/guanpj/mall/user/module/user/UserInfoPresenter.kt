@@ -26,10 +26,10 @@ class UserInfoPresenter @Inject constructor() : BasePresenter<UserInfoContract.V
         if (!checkNetWork())
             return
 
-        mView.showLoading()
-        uploadService.getUploadToken().excute(object : BaseSubscriber<String>(mView) {
+        getView().showLoading()
+        uploadService.getUploadToken().excute(object : BaseSubscriber<String>(getView()) {
             override fun onNext(t: String) {
-                mView.onGetUploadTokenResult(t)
+                getView().onGetUploadTokenResult(t)
             }
         }, mLifecycleProvider)
     }
@@ -41,10 +41,10 @@ class UserInfoPresenter @Inject constructor() : BasePresenter<UserInfoContract.V
         if (!checkNetWork())
             return
 
-        mView.showLoading()
-        userService.editUser(userIcon, userName, userGender, userSign).excute(object : BaseSubscriber<UserInfo>(mView) {
+        getView().showLoading()
+        userService.editUser(userIcon, userName, userGender, userSign).excute(object : BaseSubscriber<UserInfo>(getView()) {
             override fun onNext(t: UserInfo) {
-                mView.onEditUserResult(t)
+                getView().onEditUserResult(t)
             }
         }, mLifecycleProvider)
     }

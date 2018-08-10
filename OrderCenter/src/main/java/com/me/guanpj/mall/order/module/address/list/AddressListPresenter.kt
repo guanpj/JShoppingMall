@@ -3,9 +3,8 @@ package com.me.guanpj.mall.order.module.address.list
 import com.me.guanpj.mall.library.ext.excute
 import com.me.guanpj.mall.library.mvp.presenter.BasePresenter
 import com.me.guanpj.mall.library.rx.BaseSubscriber
-import com.me.guanpj.mall.order.data.ShipAddress
-import com.me.guanpj.mall.order.module.address.list.AddressListContract
-import com.me.guanpj.mall.order.service.ShipAddressService
+import com.me.guanpj.mall.order.data.Address
+import com.me.guanpj.mall.order.service.AddressService
 import javax.inject.Inject
 
 /*
@@ -14,7 +13,7 @@ import javax.inject.Inject
 class AddressListPresenter @Inject constructor() : BasePresenter<AddressListContract.View>(), AddressListContract.Presenter {
 
     @Inject
-    lateinit var shipAddressService: ShipAddressService
+    lateinit var shipAddressService: AddressService
 
     /*
       获取收货人列表
@@ -23,10 +22,10 @@ class AddressListPresenter @Inject constructor() : BasePresenter<AddressListCont
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        shipAddressService.getShipAddressList().excute(object : BaseSubscriber<MutableList<ShipAddress>?>(mView) {
-            override fun onNext(t: MutableList<ShipAddress>?) {
-                mView.onGetShipAddressResult(t)
+        getView().showLoading()
+        shipAddressService.getShipAddressList().excute(object : BaseSubscriber<MutableList<Address>?>(getView()) {
+            override fun onNext(t: MutableList<Address>?) {
+                getView().onGetShipAddressResult(t)
             }
         }, mLifecycleProvider)
     }
@@ -34,14 +33,14 @@ class AddressListPresenter @Inject constructor() : BasePresenter<AddressListCont
     /*
       设置默认收货人信息
      */
-    fun setDefaultShipAddress(address: ShipAddress) {
+    fun setDefaultShipAddress(address: Address) {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        shipAddressService.editShipAddress(address).excute(object : BaseSubscriber<Boolean>(mView) {
+        getView().showLoading()
+        shipAddressService.editShipAddress(address).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
-                mView.onSetDefaultResult(t)
+                getView().onSetDefaultResult(t)
             }
         }, mLifecycleProvider)
     }
@@ -53,10 +52,10 @@ class AddressListPresenter @Inject constructor() : BasePresenter<AddressListCont
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        shipAddressService.deleteShipAddress(id).excute(object : BaseSubscriber<Boolean>(mView) {
+        getView().showLoading()
+        shipAddressService.deleteShipAddress(id).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
-                mView.onDeleteResult(t)
+                getView().onDeleteResult(t)
             }
         }, mLifecycleProvider)
     }

@@ -23,10 +23,10 @@ class GoodsListPresenter @Inject constructor() : BasePresenter<GoodListContract.
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        goodsService.getGoodsList(categoryId, pageNo).excute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
+        getView().showLoading()
+        goodsService.getGoodsList(categoryId, pageNo).excute(object : BaseSubscriber<MutableList<Goods>?>(getView()) {
             override fun onNext(t: MutableList<Goods>?) {
-                mView.onGetGoodsListResult(t)
+                getView().onGetGoodsListResult(t)
             }
         }, mLifecycleProvider)
     }
@@ -38,10 +38,10 @@ class GoodsListPresenter @Inject constructor() : BasePresenter<GoodListContract.
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        goodsService.getGoodsListByKeyword(keyword, pageNo).excute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
+        getView().showLoading()
+        goodsService.getGoodsListByKeyword(keyword, pageNo).excute(object : BaseSubscriber<MutableList<Goods>?>(getView()) {
             override fun onNext(t: MutableList<Goods>?) {
-                mView.onGetGoodsListResult(t)
+                getView().onGetGoodsListResult(t)
             }
         }, mLifecycleProvider)
     }

@@ -5,6 +5,8 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.kotlin.user.data.protocol.UserInfo
+import com.kotlin.user.injection.component.DaggerUserComponent
+import com.kotlin.user.injection.module.UserModule
 import com.me.guanpj.mall.library.ext.enable
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
@@ -33,6 +35,11 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginContract.View, Vie
         setContentView(R.layout.activity_login)
 
         initView()
+    }
+
+    override fun performInject() {
+        DaggerUserComponent.builder().activityComponent(mActivityComponent)
+                .userModule(UserModule()).build().inject(this)
     }
 
     /*

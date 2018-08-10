@@ -23,10 +23,10 @@ class OrderDetailPresenter @Inject constructor() : BasePresenter<OrderConfirmCon
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        orderService.getOrderById(orderId).excute(object : BaseSubscriber<Order>(mView) {
+        getView().showLoading()
+        orderService.getOrderById(orderId).excute(object : BaseSubscriber<Order>(getView()) {
             override fun onNext(t: Order) {
-                mView.onGetOrderByIdResult(t)
+                getView().onGetOrderByIdResult(t)
             }
         }, mLifecycleProvider)
     }

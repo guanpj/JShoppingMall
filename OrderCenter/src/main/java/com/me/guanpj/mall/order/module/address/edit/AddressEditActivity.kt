@@ -5,7 +5,9 @@ import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
 import com.me.guanpj.mall.order.R
 import com.me.guanpj.mall.order.core.OrderConstant
-import com.me.guanpj.mall.order.data.ShipAddress
+import com.me.guanpj.mall.order.data.Address
+import com.me.guanpj.mall.order.di.component.DaggerAddressComponent
+import com.me.guanpj.mall.order.di.module.AddressModule
 import kotlinx.android.synthetic.main.activity_edit_address.*
 import org.jetbrains.anko.toast
 
@@ -14,7 +16,7 @@ import org.jetbrains.anko.toast
  */
 class AddressEditActivity : BaseMvpActivity<AddressEditPresenter>(), AddressEditContract.View {
 
-    private var mAddress: ShipAddress? = null
+    private var mAddress: Address? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +24,11 @@ class AddressEditActivity : BaseMvpActivity<AddressEditPresenter>(), AddressEdit
 
         initView()
         initData()
+    }
+
+    override fun performInject() {
+        DaggerAddressComponent.builder().activityComponent(mActivityComponent)
+                .addressModule(AddressModule()).build().inject(this)
     }
 
     /*

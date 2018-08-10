@@ -6,7 +6,7 @@ package com.me.guanpj.mall.order.data
 data class Order(
         val id: Int,
         val payType: Int,
-        var shipAddress: ShipAddress?,
+        var shipAddress: Address?,
         val totalPrice: Long,
         var orderStatus: Int,
         val orderGoodsList: MutableList<OrderGoods>

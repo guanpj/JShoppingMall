@@ -2,6 +2,8 @@ package com.me.guanpj.mall.user.module.forgetpwd
 
 import android.os.Bundle
 import android.view.View
+import com.kotlin.user.injection.component.DaggerUserComponent
+import com.kotlin.user.injection.module.UserModule
 import com.me.guanpj.mall.library.ext.enable
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
@@ -21,6 +23,11 @@ class ForgetPwdActivity : BaseMvpActivity<ForgetPwdPresenter>(), ForgetPwdContra
         setContentView(R.layout.activity_forget_pwd)
 
         initView()
+    }
+
+    override fun performInject() {
+        DaggerUserComponent.builder().activityComponent(mActivityComponent)
+                .userModule(UserModule()).build().inject(this)
     }
 
     /*

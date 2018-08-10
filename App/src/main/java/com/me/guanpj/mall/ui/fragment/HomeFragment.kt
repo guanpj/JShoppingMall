@@ -53,7 +53,7 @@ class HomeFragment : BaseFragment() {
     }
 
     /*
-        初始化Banner
+      初始化Banner
      */
     private fun initBanner() {
         mHomeBanner.setImageLoader(BannerImageLoader())
@@ -68,7 +68,7 @@ class HomeFragment : BaseFragment() {
     }
 
     /*
-        初始化公告
+      初始化公告
      */
     private fun initNews() {
         //公告
@@ -76,7 +76,7 @@ class HomeFragment : BaseFragment() {
     }
 
     /*
-        初始化折扣
+      初始化折扣
      */
     private fun initDiscount() {
         val manager = LinearLayoutManager(context)
@@ -89,7 +89,7 @@ class HomeFragment : BaseFragment() {
     }
 
     /*
-        初始化主题
+      初始化主题
      */
     private fun initTopic() {
         //话题

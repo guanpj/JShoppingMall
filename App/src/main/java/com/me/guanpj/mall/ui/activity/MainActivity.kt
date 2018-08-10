@@ -9,7 +9,7 @@ import com.kotlin.message.ui.fragment.MessageFragment
 import com.me.guanpj.mall.R
 import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.event.UpdateCartSizeEvent
-import com.me.guanpj.mall.goods.module.cart.CartListFragment
+import com.me.guanpj.mall.goods.module.cart.CartFragment
 import com.me.guanpj.mall.goods.module.category.CategoryFragment
 import com.me.guanpj.mall.library.core.AppManager
 import com.me.guanpj.mall.library.mvp.view.activity.BaseActivity
@@ -34,7 +34,7 @@ class MainActivity : BaseActivity() {
     //商品分类Fragment
     private val mCategoryFragment by lazy { CategoryFragment() }
     //购物车Fragment
-    private val mCartFragment by lazy { CartListFragment() }
+    private val mCartFragment by lazy { CartFragment() }
     //消息Fragment
     private val mMsgFragment by lazy { MessageFragment() }
     //"我的"Fragment

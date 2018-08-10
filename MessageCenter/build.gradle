@@ -26,8 +26,8 @@ android {
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.kotlin.mall",
-                JPUSH_APPKEY : "7f3d74ec9161e033d723f585", //JPush上注册的包名对应的appkey.
+                JPUSH_PKGNAME : "com.me.guanpj.mall",
+                JPUSH_APPKEY : "9ece8ab9d93d69adfe6dfe08", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
     }

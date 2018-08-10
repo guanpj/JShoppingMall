@@ -5,6 +5,8 @@ import android.util.Log
 import com.jph.takephoto.model.TResult
 import com.kotlin.base.common.BaseConstant
 import com.kotlin.user.data.protocol.UserInfo
+import com.kotlin.user.injection.component.DaggerUserComponent
+import com.kotlin.user.injection.module.UserModule
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseTakePhotoActivity
 import com.me.guanpj.mall.library.util.AppPrefsUtils
@@ -44,6 +46,10 @@ class UserInfoActivity : BaseTakePhotoActivity<UserInfoPresenter>(), UserInfoCon
         initData()
     }
 
+    override fun performInject() {
+        DaggerUserComponent.builder().activityComponent(mActivityComponent)
+                .userModule(UserModule()).build().inject(this)
+    }
 
     /*
       初始化视图

@@ -21,12 +21,12 @@ class ResetPwdPresenter @Inject constructor() : BasePresenter<ResetPwdContract.V
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+        getView().showLoading()
 
-        userService.resetPwd(mobile, pwd).excute(object : BaseSubscriber<Boolean>(mView) {
+        userService.resetPwd(mobile, pwd).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
                 if (t)
-                    mView.onResetPwdResult("重置密码成功")
+                    getView().onResetPwdResult("重置密码成功")
             }
         }, mLifecycleProvider)
 

@@ -18,12 +18,12 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterContract.V
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+        getView().showLoading()
 
-        userService.register(mobile, pwd, verifyCode).excute(object : BaseSubscriber<Boolean>(mView) {
+        userService.register(mobile, pwd, verifyCode).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
                 if (t)
-                    mView.onRegisterResult("注册成功")
+                    getView().onRegisterResult("注册成功")
             }
         }, mLifecycleProvider)
     }

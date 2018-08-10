@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch.Vertical.Common">
 
-    <com.kotlin.base.widgets.HeaderBar
+    <com.me.guanpj.mall.library.widget.HeaderBar
         style="@style/MatchWrap"
         app:isShowBack="false"
         app:titleText="商品分类" />

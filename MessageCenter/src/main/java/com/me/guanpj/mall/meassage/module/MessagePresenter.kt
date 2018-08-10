@@ -22,10 +22,10 @@ class MessagePresenter @Inject constructor() : BasePresenter<MessageContract.Vie
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        messageService.getMessageList().excute(object : BaseSubscriber<MutableList<Message>?>(mView) {
+        getView().showLoading()
+        messageService.getMessageList().excute(object : BaseSubscriber<MutableList<Message>?>(getView()) {
             override fun onNext(t: MutableList<Message>?) {
-                mView.onGetMessageResult(t)
+                getView().onGetMessageResult(t)
             }
         }, mLifecycleProvider)
     }

@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.adapter.BaseRecyclerViewAdapter
 import com.me.guanpj.mall.order.R
-import com.me.guanpj.mall.order.data.ShipAddress
+import com.me.guanpj.mall.order.data.Address
 import kotlinx.android.synthetic.main.layout_address_item.view.*
 
 /*
   收货地址数据适配
  */
-class ShipAddressAdapter(context: Context) : BaseRecyclerViewAdapter<ShipAddress, ShipAddressAdapter.ViewHolder>(context) {
+class ShipAddressAdapter(context: Context) : BaseRecyclerViewAdapter<Address, ShipAddressAdapter.ViewHolder>(context) {
 
     var mOptClickListener: OnOptClickListener? = null
 
@@ -62,8 +62,8 @@ class ShipAddressAdapter(context: Context) : BaseRecyclerViewAdapter<ShipAddress
       对应操作接口
      */
     interface OnOptClickListener {
-        fun onSetDefault(address: ShipAddress)
-        fun onEdit(address: ShipAddress)
-        fun onDelete(address: ShipAddress)
+        fun onSetDefault(address: Address)
+        fun onEdit(address: Address)
+        fun onDelete(address: Address)
     }
 }

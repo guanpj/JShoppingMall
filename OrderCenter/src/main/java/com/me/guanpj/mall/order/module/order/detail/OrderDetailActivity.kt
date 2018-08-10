@@ -7,6 +7,8 @@ import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
 import com.me.guanpj.mall.library.util.YuanFenConverter
 import com.me.guanpj.mall.order.R
 import com.me.guanpj.mall.order.data.Order
+import com.me.guanpj.mall.order.di.component.DaggerOrderActivityComponent
+import com.me.guanpj.mall.order.di.module.OrderModule
 import com.me.guanpj.mall.order.module.adapter.OrderGoodsAdapter
 import com.me.guanpj.mall.provider.common.ProviderConstant
 import com.me.guanpj.mall.provider.router.RouterPath
@@ -25,6 +27,11 @@ class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetail
 
         initView()
         loadData()
+    }
+
+    override fun performInject() {
+        DaggerOrderActivityComponent.builder().activityComponent(mActivityComponent)
+                .orderModule(OrderModule()).build().inject(this)
     }
 
     /*

@@ -15,6 +15,8 @@ import com.me.guanpj.mall.library.mvp.view.fragment.BaseMvpFragment
 import com.me.guanpj.mall.order.R
 import com.me.guanpj.mall.order.core.OrderConstant
 import com.me.guanpj.mall.order.data.Order
+import com.me.guanpj.mall.order.di.component.DaggerOrderFragmentComponent
+import com.me.guanpj.mall.order.di.module.OrderModule
 import com.me.guanpj.mall.order.module.adapter.OrderAdapter
 import com.me.guanpj.mall.order.module.order.detail.OrderDetailActivity
 import com.me.guanpj.mall.provider.common.ProviderConstant
@@ -38,6 +40,11 @@ class OrderListFragment : BaseMvpFragment<OrderListPresenter>(), OrderListContra
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+    }
+
+    override fun performInject() {
+        DaggerOrderFragmentComponent.builder().fragmentComponent(mFragmentComponent)
+                .orderModule(OrderModule()).build().inject(this)
     }
 
     override fun onStart() {

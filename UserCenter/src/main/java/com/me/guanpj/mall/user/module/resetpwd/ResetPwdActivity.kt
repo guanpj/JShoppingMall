@@ -1,6 +1,8 @@
 package com.me.guanpj.mall.user.module.resetpwd
 
 import android.os.Bundle
+import com.kotlin.user.injection.component.DaggerUserComponent
+import com.kotlin.user.injection.module.UserModule
 import com.me.guanpj.mall.library.ext.enable
 import com.me.guanpj.mall.library.ext.onClick
 import com.me.guanpj.mall.library.mvp.view.activity.BaseMvpActivity
@@ -22,6 +24,11 @@ class ResetPwdActivity : BaseMvpActivity<ResetPwdPresenter>(), ResetPwdContract.
         setContentView(R.layout.activity_reset_pwd)
 
         initView()
+    }
+
+    override fun performInject() {
+        DaggerUserComponent.builder().activityComponent(mActivityComponent)
+                .userModule(UserModule()).build().inject(this)
     }
 
     /*

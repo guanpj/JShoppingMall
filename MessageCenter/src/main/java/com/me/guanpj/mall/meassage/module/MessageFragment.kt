@@ -12,6 +12,8 @@ import com.me.guanpj.mall.library.ext.startLoading
 import com.me.guanpj.mall.library.mvp.view.fragment.BaseMvpFragment
 import com.me.guanpj.mall.meassage.R
 import com.me.guanpj.mall.meassage.data.Message
+import com.me.guanpj.mall.meassage.di.component.DaggerMessageComponent
+import com.me.guanpj.mall.meassage.di.module.MessageModule
 import com.me.guanpj.mall.meassage.module.MessageContract
 import com.me.guanpj.mall.meassage.module.MessagePresenter
 import com.me.guanpj.mall.provider.event.MessageBadgeEvent
@@ -32,6 +34,11 @@ class MessageFragment : BaseMvpFragment<MessagePresenter>(), MessageContract.Vie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+    }
+
+    override fun performInject() {
+        DaggerMessageComponent.builder().fragmentComponent(mFragmentComponent)
+                .messageModule(MessageModule()).build().inject(this)
     }
 
     /*

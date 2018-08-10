@@ -3,9 +3,8 @@ package com.me.guanpj.mall.order.module.address.edit
 import com.me.guanpj.mall.library.ext.excute
 import com.me.guanpj.mall.library.mvp.presenter.BasePresenter
 import com.me.guanpj.mall.library.rx.BaseSubscriber
-import com.me.guanpj.mall.order.data.ShipAddress
-import com.me.guanpj.mall.order.module.address.edit.AddressEditContract
-import com.me.guanpj.mall.order.service.ShipAddressService
+import com.me.guanpj.mall.order.data.Address
+import com.me.guanpj.mall.order.service.AddressService
 import javax.inject.Inject
 
 /*
@@ -14,7 +13,7 @@ import javax.inject.Inject
 class AddressEditPresenter @Inject constructor() : BasePresenter<AddressEditContract.View>(), AddressEditContract.Presenter {
 
     @Inject
-    lateinit var shipAddressService: ShipAddressService
+    lateinit var shipAddressService: AddressService
 
     /*
       添加收货人信息
@@ -23,10 +22,10 @@ class AddressEditPresenter @Inject constructor() : BasePresenter<AddressEditCont
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        shipAddressService.addShipAddress(shipUserName, shipUserMobile, shipAddress).excute(object : BaseSubscriber<Boolean>(mView) {
+        getView().showLoading()
+        shipAddressService.addShipAddress(shipUserName, shipUserMobile, shipAddress).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
-                mView.onAddShipAddressResult(t)
+                getView().onAddShipAddressResult(t)
             }
         }, mLifecycleProvider)
     }
@@ -34,14 +33,14 @@ class AddressEditPresenter @Inject constructor() : BasePresenter<AddressEditCont
     /*
       修改收货人信息
      */
-    fun editShipAddress(address: ShipAddress) {
+    fun editShipAddress(address: Address) {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        shipAddressService.editShipAddress(address).excute(object : BaseSubscriber<Boolean>(mView) {
+        getView().showLoading()
+        shipAddressService.editShipAddress(address).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
-                mView.onEditShipAddressResult(t)
+                getView().onEditShipAddressResult(t)
             }
         }, mLifecycleProvider)
     }

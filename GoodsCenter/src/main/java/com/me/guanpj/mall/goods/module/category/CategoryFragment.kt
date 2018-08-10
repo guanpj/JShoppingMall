@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kennyc.view.MultiStateView
+import com.kotlin.goods.injection.component.DaggerCategoryComponent
 import com.me.guanpj.mall.goods.R
 import com.me.guanpj.mall.goods.core.GoodsConstant
 import com.me.guanpj.mall.goods.data.Category
+import com.me.guanpj.mall.goods.di.module.CategoryModule
 import com.me.guanpj.mall.goods.module.adapter.SecondCategoryAdapter
 import com.me.guanpj.mall.goods.module.adapter.TopCategoryAdapter
 import com.me.guanpj.mall.goods.module.goods.list.GoodsListActivity
@@ -39,6 +41,11 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryContract.
         super.onViewCreated(view, savedInstanceState)
         initView()
         loadData()
+    }
+
+    override fun performInject() {
+        DaggerCategoryComponent.builder().fragmentComponent(mFragmentComponent)
+                .categoryModule(CategoryModule()).build().inject(this)
     }
 
     /*

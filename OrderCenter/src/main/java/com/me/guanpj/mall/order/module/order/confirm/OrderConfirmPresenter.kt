@@ -22,10 +22,10 @@ class OrderConfirmPresenter @Inject constructor() : BasePresenter<OrderConfirmCo
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        orderService.getOrderById(orderId).excute(object : BaseSubscriber<Order>(mView) {
+        getView().showLoading()
+        orderService.getOrderById(orderId).excute(object : BaseSubscriber<Order>(getView()) {
             override fun onNext(t: Order) {
-                mView.onGetOrderByIdResult(t)
+                getView().onGetOrderByIdResult(t)
             }
         }, mLifecycleProvider)
 
@@ -38,10 +38,10 @@ class OrderConfirmPresenter @Inject constructor() : BasePresenter<OrderConfirmCo
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        orderService.submitOrder(order).excute(object : BaseSubscriber<Boolean>(mView) {
+        getView().showLoading()
+        orderService.submitOrder(order).excute(object : BaseSubscriber<Boolean>(getView()) {
             override fun onNext(t: Boolean) {
-                mView.onSubmitOrderResult(t)
+                getView().onSubmitOrderResult(t)
             }
         }, mLifecycleProvider)
     }
