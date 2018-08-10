@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.support.v4.app.Fragment
+import com.alibaba.android.arouter.launcher.ARouter
 import com.me.guanpj.mall.di.component.AppComponent
 import com.me.guanpj.mall.di.module.AppModule
 import com.me.guanpj.mall.library.core.AppStatusTracker
@@ -36,9 +37,9 @@ open class MyApplication : Application(), HasActivityInjector, HasSupportFragmen
 
         context = this
 
-        /*ARouter.openLog()
+        ARouter.openLog()
         ARouter.openDebug()
-        ARouter.init(this)*/
+        ARouter.init(this)
     }
 
     companion object {
