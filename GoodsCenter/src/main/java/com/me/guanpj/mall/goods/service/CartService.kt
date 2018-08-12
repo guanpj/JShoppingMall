@@ -1,10 +1,14 @@
 package com.me.guanpj.mall.goods.service
 
 import com.me.guanpj.mall.goods.data.CartGoods
+import com.me.guanpj.mall.goods.data.UpdateGoodsListReq
+import com.me.guanpj.mall.goods.data.api.CartApi
+import com.me.guanpj.mall.library.data.BaseResp
+import com.me.guanpj.mall.library.data.net.RetrofitFactory
 import rx.Observable
 
 /*
-    购物车 业务 接口
+  购物车 业务接口
  */
 interface CartService {
     /*
@@ -27,4 +31,9 @@ interface CartService {
       购物车结算
     */
     fun submitCart(list: MutableList<CartGoods>, totalPrice: Long): Observable<Int>
+
+    /*
+     更新购物车的数据
+    */
+    fun updateCartGoods(list: MutableList<CartGoods>): Observable<Int>
 }

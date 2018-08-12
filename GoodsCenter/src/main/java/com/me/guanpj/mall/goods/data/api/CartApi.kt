@@ -1,16 +1,13 @@
 package com.me.guanpj.mall.goods.data.api
 
-import com.me.guanpj.mall.goods.data.AddCartReq
-import com.me.guanpj.mall.goods.data.CartGoods
-import com.me.guanpj.mall.goods.data.DeleteCartReq
-import com.me.guanpj.mall.goods.data.SubmitCartReq
+import com.me.guanpj.mall.goods.data.*
 import com.me.guanpj.mall.library.data.BaseResp
 import retrofit2.http.Body
 import retrofit2.http.POST
 import rx.Observable
 
 /*
-  购物车 接口
+  购物车接口
  */
 interface CartApi {
     /*
@@ -36,4 +33,10 @@ interface CartApi {
      */
     @POST("cart/submit")
     fun submitCart(@Body req: SubmitCartReq): Observable<BaseResp<Int>>
+
+    /*
+      更新购物车的数据
+     */
+    @POST("cart/updateCartGoods")
+    fun updateCartGoods(@Body req: UpdateGoodsListReq): Observable<BaseResp<Int>>
 }

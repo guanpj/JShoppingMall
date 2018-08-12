@@ -37,30 +37,24 @@ class CartFragment : BaseMvpFragment<CartPresenter>(), CartContract.View {
     private lateinit var mAdapter: CartGoodsAdapter
 
     private var mTotalPrice: Long = 0
+    private var mIsEditMode: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         mPresenter.onAttach(this)
-        return inflater?.inflate(R.layout.fragment_cart, container, false)
+        return inflater.inflate(R.layout.fragment_cart, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initObserve()
+        loadData()
     }
 
     override fun performInject() {
         DaggerCartComponent.builder().fragmentComponent(mFragmentComponent)
                 .cartModule(CartModule()).build().inject(this)
-    }
-
-    /*
-      加载数据
-     */
-    override fun onStart() {
-        super.onStart()
-        loadData()
     }
 
     /*
@@ -113,12 +107,22 @@ class CartFragment : BaseMvpFragment<CartPresenter>(), CartContract.View {
       刷新是否为编辑状态
      */
     private fun refreshEditStatus() {
-        val isEditStatus = getString(R.string.common_edit) == mHeaderBar.getRightText()
-        mTotalPriceTv.setVisible(isEditStatus.not())
-        mSettleAccountsBtn.setVisible(isEditStatus.not())
-        mDeleteBtn.setVisible(isEditStatus)
+        mIsEditMode = getString(R.string.common_edit) == mHeaderBar.getRightText()
 
-        mHeaderBar.getRightView().text = if (isEditStatus) getString(R.string.common_complete) else getString(R.string.common_edit)
+        mTotalPriceTv.setVisible(mIsEditMode.not())
+        mSettleAccountsBtn.setVisible(mIsEditMode.not())
+        mDeleteBtn.setVisible(mIsEditMode)
+
+        if (mIsEditMode) {
+            mHeaderBar.getRightView().text = getString(R.string.common_complete)
+        } else {
+            val cartGoodsList: MutableList<CartGoods> = arrayListOf()
+            mAdapter.dataList.mapTo(cartGoodsList) { it }
+            if (cartGoodsList.size > 0) {
+                mPresenter.updateCartGoods(cartGoodsList)
+            }
+            mHeaderBar.getRightView().text = getString(R.string.common_edit)
+        }
     }
 
     /*
@@ -150,18 +154,25 @@ class CartFragment : BaseMvpFragment<CartPresenter>(), CartContract.View {
         updateTotalPrice()
     }
 
+    override fun onUpdateCartGoodsResult(result: Int) {
+        toast("更新购物车成功！")
+    }
+
     /*
       注册监听
      */
     private fun initObserve() {
-        Bus.observe<CartAllCheckedEvent>().subscribe { t: CartAllCheckedEvent ->
+        Bus.observe<CartAllCheckedEvent>().subscribe { event: CartAllCheckedEvent ->
             run {
-                mAllCheckedCb.isChecked = t.isAllChecked
+                mAllCheckedCb.isChecked = event.isAllChecked
                 updateTotalPrice()
             }
         }.registerInBus(this)
 
-        Bus.observe<UpdateTotalPriceEvent>().subscribe {
+        Bus.observe<UpdateTotalPriceEvent>().subscribe { event: UpdateTotalPriceEvent ->
+            if (!mIsEditMode) {
+                mPresenter.updateCartGoods(arrayListOf(event.good))
+            }
             updateTotalPrice()
         }.registerInBus(this)
     }

@@ -12,6 +12,8 @@ interface CartContract {
         fun onDeleteCartListResult(result: Boolean)
         //提交购物车
         fun onSubmitCartListResult(result: Int)
+        //更新购物车
+        fun onUpdateCartGoodsResult(result: Int)
     }
 
     interface Presenter : IBasePresenter<View> {

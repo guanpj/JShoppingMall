@@ -15,7 +15,6 @@ class CartPresenter @Inject constructor() : BasePresenter<CartContract.View>(), 
     @Inject
     lateinit var cartService: CartService
 
-
     /*
       获取购物车列表
      */
@@ -57,6 +56,21 @@ class CartPresenter @Inject constructor() : BasePresenter<CartContract.View>(), 
         cartService.submitCart(list, totalPrice).excute(object : BaseSubscriber<Int>(getView()) {
             override fun onNext(t: Int) {
                 getView().onSubmitCartListResult(t)
+            }
+        }, mLifecycleProvider)
+    }
+
+    /*
+      更新购物车商品
+     */
+    fun updateCartGoods(list: MutableList<CartGoods>) {
+        if (!checkNetWork()) {
+            return
+        }
+        getView().showLoading()
+        cartService.updateCartGoods(list).excute(object : BaseSubscriber<Int>(getView()) {
+            override fun onNext(t: Int) {
+                getView().onUpdateCartGoodsResult(t)
             }
         }, mLifecycleProvider)
     }

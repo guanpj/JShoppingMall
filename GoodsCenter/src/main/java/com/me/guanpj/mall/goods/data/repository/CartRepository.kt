@@ -1,9 +1,6 @@
 package com.me.guanpj.mall.goods.data.repository
 
-import com.me.guanpj.mall.goods.data.AddCartReq
-import com.me.guanpj.mall.goods.data.CartGoods
-import com.me.guanpj.mall.goods.data.DeleteCartReq
-import com.me.guanpj.mall.goods.data.SubmitCartReq
+import com.me.guanpj.mall.goods.data.*
 import com.me.guanpj.mall.goods.data.api.CartApi
 import com.me.guanpj.mall.library.data.BaseResp
 import com.me.guanpj.mall.library.data.net.RetrofitFactory
@@ -45,5 +42,10 @@ class CartRepository @Inject constructor() {
         return RetrofitFactory.instance.create(CartApi::class.java).submitCart(SubmitCartReq(list, totalPrice))
     }
 
-
+    /*
+      更新购物车的数据
+     */
+    fun updateCartGoods(list: MutableList<CartGoods>): Observable<BaseResp<Int>> {
+        return RetrofitFactory.instance.create(CartApi::class.java).updateCartGoods(UpdateGoodsListReq(list))
+    }
 }

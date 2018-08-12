@@ -3,6 +3,7 @@ package com.me.guanpj.mall.goods.service.impl
 import com.me.guanpj.mall.goods.data.CartGoods
 import com.me.guanpj.mall.goods.data.repository.CartRepository
 import com.me.guanpj.mall.goods.service.CartService
+import com.me.guanpj.mall.library.data.BaseResp
 import com.me.guanpj.mall.library.ext.convert
 import com.me.guanpj.mall.library.ext.convertBoolean
 import rx.Observable
@@ -38,9 +39,16 @@ class CartServiceImpl @Inject constructor() : CartService {
     }
 
     /*
-        提交购物车商品
+      提交购物车商品
      */
     override fun submitCart(list: MutableList<CartGoods>, totalPrice: Long): Observable<Int> {
         return repository.submitCart(list, totalPrice).convert()
+    }
+
+    /*
+     更新购物车的数据
+    */
+    override fun updateCartGoods(list: MutableList<CartGoods>): Observable<Int> {
+        return repository.updateCartGoods(list).convert()
     }
 }
