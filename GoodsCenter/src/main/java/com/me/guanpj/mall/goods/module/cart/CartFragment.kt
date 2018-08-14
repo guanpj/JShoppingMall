@@ -155,7 +155,9 @@ class CartFragment : BaseMvpFragment<CartPresenter>(), CartContract.View {
     }
 
     override fun onUpdateCartGoodsResult(result: Int) {
-        toast("更新购物车成功！")
+        if (!mIsEditMode) {
+            toast("更新购物车成功！")
+        }
     }
 
     /*
