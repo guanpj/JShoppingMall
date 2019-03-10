@@ -24,7 +24,7 @@
 
 | 商品详情 | 订单 | 支付 |
 |:-:|:-:|:-:|
-| ![7](https://my-bucket-1251125515.cos.ap-guangzhou.myqcloud.com/JShoppingMall/7good_detail.png) | ![8](https://my-bucket-1251125515.cos.ap-guangzhou.myqcloud.com/JShoppingMall/9order.png) | ![9](https://my-bucket-1251125515.cos.ap-guangzhou.myqcloud.com/JShoppingMall/9pay.png) |
+| ![7](https://my-bucket-1251125515.cos.ap-guangzhou.myqcloud.com/JShoppingMall/7good_detail.png) | ![8](https://my-bucket-1251125515.cos.ap-guangzhou.myqcloud.com/JShoppingMall/8order.png) | ![9](https://my-bucket-1251125515.cos.ap-guangzhou.myqcloud.com/JShoppingMall/9pay.png) |
 
 | 地址管理 | 新增地址 | 设置 |
 |:-:|:-:|:-:|
